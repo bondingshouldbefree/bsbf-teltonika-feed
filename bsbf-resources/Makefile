@@ -14,12 +14,6 @@ PKG_SOURCE_VERSION:=HEAD
 
 include $(INCLUDE_DIR)/package.mk
 
-define Package/bsbf-iperf
-  SECTION:=net
-  CATEGORY:=Network
-  TITLE:=bsbf-iperf
-endef
-
 define Package/bsbf-mptcp
   SECTION:=net
   CATEGORY:=Network
@@ -58,11 +52,6 @@ define Package/bsbf-usb-netdev-autodhcp
 endef
 
 define Build/Compile
-endef
-
-define Package/bsbf-iperf/install
-	$(INSTALL_DIR) $(1)/usr/local/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/resources-client/bsbf-iperf $(1)/usr/local/sbin
 endef
 
 define Package/bsbf-mptcp/install
@@ -114,7 +103,6 @@ define Package/bsbf-usb-netdev-autodhcp/install
 	$(INSTALL_BIN) ./files/etc/hotplug.d/net/99-bsbf-usb-netdev-autodhcp $(1)/etc/hotplug.d/net
 endef
 
-$(eval $(call BuildPackage,bsbf-iperf))
 $(eval $(call BuildPackage,bsbf-mptcp))
 $(eval $(call BuildPackage,bsbf-netspeed))
 $(eval $(call BuildPackage,bsbf-quectel-usbnet))
