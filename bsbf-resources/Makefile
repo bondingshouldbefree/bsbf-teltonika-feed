@@ -42,7 +42,6 @@ define Package/bsbf-tcp-in-udp
   SECTION:=net
   CATEGORY:=Network
   TITLE:=bsbf-tcp-in-udp
-  DEPENDS:=+tcp-in-udp
 endef
 
 define Package/bsbf-usb-netdev-autodhcp
@@ -93,6 +92,9 @@ endef
 define Package/bsbf-tcp-in-udp/install
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/iface
 	$(INSTALL_BIN) ./files/etc/hotplug.d/iface/99-bsbf-tcp-in-udp $(1)/etc/hotplug.d/iface
+
+	$(INSTALL_DIR) $(1)/usr/lib/bpf
+	$(INSTALL_DATA) ./files/usr/lib/bpf/tcp_in_udp_tc_le.o $(1)/usr/lib/bpf/tcp_in_udp_tc.o
 
 	$(INSTALL_DIR) $(1)/usr/local/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/resources-client/bsbf-tcp-in-udp $(1)/usr/local/sbin
